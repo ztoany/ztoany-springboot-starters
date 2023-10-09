@@ -1,0 +1,5 @@
+rootProject.name = 'ztoany-springboot-starters'
+include 'util'
+include 'util:util-boot-autoconfigure'
+findProject(':util:util-boot-autoconfigure')?.name = 'util-boot-autoconfigure'
+

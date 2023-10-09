@@ -1,0 +1,84 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id 'io.spring.dependency-management' version "${springDepMgmtVersion}" apply false
+    id "com.vanniktech.maven.publish" version "${mavenPublishPluginVersion}" apply false
+}
+
+allprojects {
+    group = "${projectUnifiedGroup}"
+    version = "${projectUnifiedVersion}"
+}
+
+subprojects { project ->
+    if(project.name.endsWith("boot-starter") || project.name.endsWith("boot-autoconfigure")) {
+        apply plugin: 'java-library'
+        apply plugin: 'io.spring.dependency-management'
+        apply plugin: 'com.vanniktech.maven.publish'
+
+        sourceCompatibility = '17'
+
+        dependencyManagement {
+            imports {
+                mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+            }
+        }
+
+        repositories {
+            maven {
+                url 'https://maven.aliyun.com/nexus/content/groups/public/'
+            }
+
+            maven { url "https://repo.spring.io/release" }
+
+            maven { url "https://repo.spring.io/milestone" }
+
+            maven { url 'https://repo.spring.io/snapshot' }
+
+            mavenCentral()
+
+            mavenLocal()
+        }
+
+        mavenPublishing {
+            pom {
+                name = 'ztoany-springboot-starters'
+                description = 'Springboot Starter'
+                url = 'https://github.com/ztoany/ztoany-springboot-starters'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'ztoany'
+                        name = 'ztoany'
+                        email = 'marvin.m.huang@outlook.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/ztoany/ztoany-springboot-starters.git'
+                    developerConnection = 'scm:git:ssh://github.com:ztoany/ztoany-springboot-starters.git'
+                    url = 'https://github.com/ztoany/ztoany-springboot-starters/'
+                }
+            }
+
+            // publishToMavenCentral(SonatypeHost.DEFAULT)
+            // or when publishing to https://s01.oss.sonatype.org
+            publishToMavenCentral(SonatypeHost.S01)
+
+            signAllPublications()
+        }
+    }
+
+    if(project.name.endsWith("boot-autoconfigure")) {
+        dependencies {
+            implementation "org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}"
+            annotationProcessor "org.springframework.boot:spring-boot-autoconfigure-processor:${springBootVersion}"
+            annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+        }
+    }
+}
