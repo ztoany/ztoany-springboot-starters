@@ -1,0 +1,4 @@
+dependencies {
+    api project(':util:util-boot-autoconfigure')
+    compileOnlyApi group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: "${tomcatEmbedVersion}"
+}
