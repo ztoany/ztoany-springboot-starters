@@ -1,0 +1,3 @@
+dependencies {
+    api project(':servlet-exception-handler:servlet-exception-handler-boot-autoconfigure')
+}
