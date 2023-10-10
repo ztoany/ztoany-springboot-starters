@@ -1,0 +1,3 @@
+dependencies {
+    api project(':hibernate-snowflakeid:hibernate-snowflakeid-boot-autoconfigure')
+}
