@@ -11,7 +11,8 @@ import java.util.Optional;
 public class OidcUserUtil {
     public static Optional<String> getOidcSubjectIdOrEmptyStr() {
         try {
-            return getOidcSubjectId();
+            var op = getOidcSubjectId();
+            return op.isEmpty() ? Optional.of("") : op;
         } catch (Exception ex) {
             return Optional.of("");
         }
