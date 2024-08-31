@@ -1,0 +1,3 @@
+dependencies {
+    api project(':errormessage:errormessage-boot-autoconfigure')
+}
