@@ -1,7 +1,0 @@
-dependencies {
-    api group: 'io.github.ztoany.infra', name: 'ztoany-exception-java', version: "${ztoanyExceptionVersion}"
-    compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: "${jacksonVersion}"
-    compileOnly group: 'org.springframework', name: 'spring-webmvc', version: "${springVersion}"
-    compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
-    compileOnly("jakarta.servlet:jakarta.servlet-api")
-}
