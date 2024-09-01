@@ -1,4 +1,4 @@
-package io.github.ztoany.infra.springboot.problemdetails;
+package io.github.ztoany.infra.springboot.servlet.problemdetails;
 
 import jakarta.servlet.Servlet;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -16,11 +16,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ConditionalOnClass({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class })
 @AutoConfigureBefore(WebMvcAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class MvcProblemDetailsAutoConfiguration {
+public class ServletProblemDetailsAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(ResponseEntityExceptionHandler.class)
-    public MvcProblemDetailsResponseEntityExceptionHandler mvcProblemDetailsResponseEntityExceptionHandler() {
-        return new MvcProblemDetailsResponseEntityExceptionHandler();
+    public ServletProblemDetailsResponseEntityExceptionHandler servletProblemDetailsResponseEntityExceptionHandler() {
+        return new ServletProblemDetailsResponseEntityExceptionHandler();
     }
 
 }

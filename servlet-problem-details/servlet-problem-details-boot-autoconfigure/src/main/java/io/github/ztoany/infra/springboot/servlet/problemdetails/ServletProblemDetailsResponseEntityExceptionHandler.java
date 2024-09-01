@@ -1,4 +1,4 @@
-package io.github.ztoany.infra.springboot.problemdetails;
+package io.github.ztoany.infra.springboot.servlet.problemdetails;
 
 import io.github.ztoany.infra.springboot.exception.BusinessException;
 import org.slf4j.Logger;
@@ -13,8 +13,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class MvcProblemDetailsResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
-    private static final Logger SLF4J_LOGGER = LoggerFactory.getLogger(MvcProblemDetailsResponseEntityExceptionHandler.class);
+public class ServletProblemDetailsResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+    private static final Logger SLF4J_LOGGER = LoggerFactory.getLogger(ServletProblemDetailsResponseEntityExceptionHandler.class);
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(

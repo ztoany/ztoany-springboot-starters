@@ -1,4 +1,4 @@
-package io.github.ztoany.infra.springboot.problemdetails;
+package io.github.ztoany.infra.springboot.servlet.problemdetails;
 
 import org.springframework.http.ProblemDetail;
 import org.springframework.validation.BindingResult;
