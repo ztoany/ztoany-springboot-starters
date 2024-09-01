@@ -4,6 +4,7 @@ import io.github.ztoany.infra.springboot.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -30,6 +31,7 @@ public class MvcProblemDetailsResponseEntityExceptionHandler extends ResponseEnt
         HttpStatusCode status = HttpStatus.CONFLICT;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getErrorMessage());
         ProblemDetailsBuilder.code(problemDetail, ex.getErrorCode());
+        ProblemDetailsBuilder.timestamp(problemDetail);
         return handleExceptionInternal(ex, problemDetail, null, status, request);
     }
 
@@ -38,6 +40,7 @@ public class MvcProblemDetailsResponseEntityExceptionHandler extends ResponseEnt
         SLF4J_LOGGER.error(ex.getMessage(), ex);
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, status.getReasonPhrase());
+        ProblemDetailsBuilder.timestamp(problemDetail);
         return super.handleExceptionInternal(ex, problemDetail, null, status, request);
     }
 
@@ -52,6 +55,9 @@ public class MvcProblemDetailsResponseEntityExceptionHandler extends ResponseEnt
             SLF4J_LOGGER.warn(ex.getMessage());
         }
 
+        if(ex instanceof ErrorResponse errorResponse) {
+            ProblemDetailsBuilder.timestamp(errorResponse.getBody());
+        }
         return super.handleExceptionInternal(ex, body, headers, statusCode, request);
     }
 
