@@ -12,3 +12,8 @@ gradle jpa-auditing:jpa-auditing-boot-autoconfigure:publishAndReleaseToMavenCent
 
 gradle jpa-auditing:jpa-auditing-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
 
+gradle exception:exception-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
+
+gradle problem-details:problem-details-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
+
+gradle problem-details:problem-details-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache

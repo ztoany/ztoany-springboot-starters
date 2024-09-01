@@ -1,0 +1,8 @@
+dependencies {
+    api project(':exception:exception-boot-autoconfigure')
+    compileOnly 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.springframework:spring-webmvc'
+    compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: "${jacksonVersion}"
+    compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+    compileOnly("jakarta.servlet:jakarta.servlet-api")
+}

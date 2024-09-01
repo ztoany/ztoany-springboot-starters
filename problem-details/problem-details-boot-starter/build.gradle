@@ -1,0 +1,3 @@
+dependencies {
+    api project(':problem-details:problem-details-boot-autoconfigure')
+}

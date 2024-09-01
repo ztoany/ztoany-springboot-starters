@@ -1,5 +1,0 @@
-dependencies {
-    api group: 'io.github.ztoany.infra', name: 'ztoany-exception-java', version: "${ztoanyExceptionVersion}"
-    compileOnly 'org.springframework:spring-context'
-    compileOnly 'org.springframework.boot:spring-boot-starter'
-}
