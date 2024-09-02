@@ -17,3 +17,7 @@ gradle exception:exception-boot-autoconfigure:publishAndReleaseToMavenCentral --
 gradle servlet-problem-details:servlet-problem-details-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
 
 gradle servlet-problem-details:servlet-problem-details-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
+
+gradle webflux-problem-details:webflux-problem-details-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
+
+gradle webflux-problem-details:webflux-problem-details-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
