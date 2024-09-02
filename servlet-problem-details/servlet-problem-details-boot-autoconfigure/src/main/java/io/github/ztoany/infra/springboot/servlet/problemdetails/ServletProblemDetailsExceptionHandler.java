@@ -13,8 +13,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class ServletProblemDetailsResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
-    private static final Logger SLF4J_LOGGER = LoggerFactory.getLogger(ServletProblemDetailsResponseEntityExceptionHandler.class);
+public class ServletProblemDetailsExceptionHandler extends ResponseEntityExceptionHandler {
+    private static final Logger SLF4J_LOGGER = LoggerFactory.getLogger(ServletProblemDetailsExceptionHandler.class);
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(

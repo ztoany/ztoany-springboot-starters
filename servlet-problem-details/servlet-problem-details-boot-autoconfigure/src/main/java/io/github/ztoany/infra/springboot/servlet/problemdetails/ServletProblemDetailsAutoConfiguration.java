@@ -19,8 +19,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ServletProblemDetailsAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(ResponseEntityExceptionHandler.class)
-    public ServletProblemDetailsResponseEntityExceptionHandler servletProblemDetailsResponseEntityExceptionHandler() {
-        return new ServletProblemDetailsResponseEntityExceptionHandler();
+    public ServletProblemDetailsExceptionHandler servletProblemDetailsExceptionHandler() {
+        return new ServletProblemDetailsExceptionHandler();
     }
 
 }
