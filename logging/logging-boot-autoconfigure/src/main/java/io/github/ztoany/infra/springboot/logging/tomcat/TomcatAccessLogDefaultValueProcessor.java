@@ -36,6 +36,7 @@ public class TomcatAccessLogDefaultValueProcessor implements InstantiationAwareB
             accesslog.setPattern(DEFAULT_PATTERN);
             accesslog.setEncoding(UTF8);
             accesslog.setRotate(true);
+            accesslog.setRenameOnRotate(true);
         }
 
         return true;

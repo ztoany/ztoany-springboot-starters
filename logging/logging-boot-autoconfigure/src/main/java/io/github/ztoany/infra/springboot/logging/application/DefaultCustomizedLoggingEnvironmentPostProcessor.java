@@ -34,6 +34,10 @@ public class DefaultCustomizedLoggingEnvironmentPostProcessor implements Environ
 
     private static final String DEFAULT_LOG_FILE_PATH = "/var/log";
 
+    private static final String ERROR_FILE_NAME_PROPERTY = "logging.error-file.name";
+
+    private static final String ERROR_FILE_ENV = "ERROR_LOG_FILE";
+
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         /*
@@ -47,11 +51,13 @@ public class DefaultCustomizedLoggingEnvironmentPostProcessor implements Environ
             appName = DEFAULT_SPRING_APPLICATION_NAME_VALUE;
         }
 
+        String sep = File.separator;
+        String formatStr = "%s" + sep + "%s.log";
+
         HashMap<String, Object> map = new HashMap<>();
 
         String logFileName = environment.getProperty(LogFile.FILE_NAME_PROPERTY);
         if(logFileName == null) {
-            String sep = File.separator;
             String logFilePath = environment.getProperty(LogFile.FILE_PATH_PROPERTY);
             if(logFilePath == null) {
                 logFilePath = DEFAULT_LOG_FILE_PATH;
@@ -59,9 +65,22 @@ public class DefaultCustomizedLoggingEnvironmentPostProcessor implements Environ
                 logFilePath = StringUtils.trimTrailingCharacter(logFilePath, sep.charAt(0));
             }
 
-            String formatStr = "%s" + sep + "%s.log";
             map.put(LogFile.FILE_NAME_PROPERTY, String.format(formatStr, logFilePath, appName));
         }
+
+        String errorLogFileName = environment.getProperty(ERROR_FILE_NAME_PROPERTY);
+        if(errorLogFileName == null) {
+            String logFilePath = environment.getProperty(LogFile.FILE_PATH_PROPERTY);
+            if(logFilePath == null) {
+                logFilePath = DEFAULT_LOG_FILE_PATH;
+            } else {
+                logFilePath = StringUtils.trimTrailingCharacter(logFilePath, sep.charAt(0));
+            }
+
+            errorLogFileName = String.format(formatStr, logFilePath, appName + "-error");
+        }
+
+        //map.put(ERROR_FILE_ENV, errorLogFileName);
 
         map.put(DEFAULT_LOGBACK_MAX_HISTORY_KEY, DEFAULT_LOGBACK_MAX_HISTORY_VALUE);
         map.put(DEFAULT_LOGBACK_MAX_FILE_SIZE_KEY, DEFAULT_LOGBACK_MAX_FILE_SIZE_VALUE);
