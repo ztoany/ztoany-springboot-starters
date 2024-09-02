@@ -36,8 +36,6 @@ public class DefaultCustomizedLoggingEnvironmentPostProcessor implements Environ
 
     private static final String ERROR_FILE_NAME_PROPERTY = "logging.error-file.name";
 
-    private static final String ERROR_FILE_ENV = "ERROR_LOG_FILE";
-
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         /*
@@ -77,10 +75,8 @@ public class DefaultCustomizedLoggingEnvironmentPostProcessor implements Environ
                 logFilePath = StringUtils.trimTrailingCharacter(logFilePath, sep.charAt(0));
             }
 
-            errorLogFileName = String.format(formatStr, logFilePath, appName + "-error");
+            map.put(ERROR_FILE_NAME_PROPERTY, String.format(formatStr, logFilePath, appName + "-error"));
         }
-
-        //map.put(ERROR_FILE_ENV, errorLogFileName);
 
         map.put(DEFAULT_LOGBACK_MAX_HISTORY_KEY, DEFAULT_LOGBACK_MAX_HISTORY_VALUE);
         map.put(DEFAULT_LOGBACK_MAX_FILE_SIZE_KEY, DEFAULT_LOGBACK_MAX_FILE_SIZE_VALUE);
