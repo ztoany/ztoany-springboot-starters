@@ -1,0 +1,7 @@
+dependencies {
+    api project(':exception:exception-boot-autoconfigure')
+    compileOnly 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.springframework:spring-webflux'
+    compileOnly 'org.slf4j:slf4j-api'
+    //compileOnly group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+}

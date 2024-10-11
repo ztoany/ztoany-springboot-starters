@@ -1,14 +1,20 @@
 package io.github.ztoany.infra.springboot.logging.tomcat;
 
 
-import io.github.ztoany.infra.springboot.util.ApplicationNameResolver;
+import org.apache.catalina.startup.Tomcat;
+import org.apache.coyote.UpgradeProtocol;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.stereotype.Component;
 
-
+@Component
+@ConditionalOnClass({ Tomcat.class, UpgradeProtocol.class })
 public class TomcatAccessLogDefaultValueProcessor implements InstantiationAwareBeanPostProcessor {
-    private ApplicationNameResolver applicationNameResolver;
+    @Value("${spring.application.name:spring}")
+    private String applicationName;
 
     private static final String DIR = "/var/log";
     private static final String ACCESS_LOG_TYPE = "-access";
@@ -18,24 +24,20 @@ public class TomcatAccessLogDefaultValueProcessor implements InstantiationAwareB
 
     private static final String DEFAULT_PATTERN = "%a %l %u %t \"%r\" %s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{X-Forwarded-For}i\" %F %D %h %{X-Request-Id}i";
 
-    public TomcatAccessLogDefaultValueProcessor(ApplicationNameResolver applicationNameResolver) {
-        this.applicationNameResolver = applicationNameResolver;
-    }
-
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
-        if(bean instanceof ServerProperties) {
-            ServerProperties serverProperties = (ServerProperties) bean;
+        if(bean instanceof ServerProperties serverProperties) {
             ServerProperties.Tomcat.Accesslog accesslog = serverProperties.getTomcat().getAccesslog();
             accesslog.setEnabled(true);
             accesslog.setDirectory(DIR);
-            accesslog.setPrefix(applicationNameResolver.getApplicationName() + ACCESS_LOG_TYPE);
+            accesslog.setPrefix(applicationName + ACCESS_LOG_TYPE);
             accesslog.setBuffered(true);
             accesslog.setFileDateFormat(FILE_DATE_FORMAT);
             accesslog.setMaxDays(MAX_DAYS);
             accesslog.setPattern(DEFAULT_PATTERN);
             accesslog.setEncoding(UTF8);
             accesslog.setRotate(true);
+            accesslog.setRenameOnRotate(true);
         }
 
         return true;

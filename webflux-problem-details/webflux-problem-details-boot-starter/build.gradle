@@ -1,0 +1,3 @@
+dependencies {
+    api project(':webflux-problem-details:webflux-problem-details-boot-autoconfigure')
+}

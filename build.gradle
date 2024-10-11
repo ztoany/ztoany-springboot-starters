@@ -17,7 +17,11 @@ subprojects { project ->
         apply plugin: 'io.spring.dependency-management'
         apply plugin: 'com.vanniktech.maven.publish'
 
-        sourceCompatibility = '17'
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(21)
+            }
+        }
 
         dependencyManagement {
             imports {
@@ -66,9 +70,8 @@ subprojects { project ->
                 }
             }
 
-            // publishToMavenCentral(SonatypeHost.DEFAULT)
-            // or when publishing to https://s01.oss.sonatype.org
-            publishToMavenCentral(SonatypeHost.S01)
+            // publishing to https://central.sonatype.com/
+            publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
             signAllPublications()
         }

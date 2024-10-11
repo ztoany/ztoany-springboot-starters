@@ -1,27 +1,23 @@
-gradle util:util-boot-autoconfigure:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle util:util-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle servlet-exception-handler:servlet-exception-handler-boot-autoconfigure:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle logging:logging-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle servlet-exception-handler:servlet-exception-handler-boot-starter:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle logging:logging-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle logging:logging-boot-autoconfigure:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle hibernate-snowflakeid:hibernate-snowflakeid-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle logging:logging-boot-starter:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle hibernate-snowflakeid:hibernate-snowflakeid-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle hibernate-snowflakeid:hibernate-snowflakeid-boot-autoconfigure:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle jpa-auditing:jpa-auditing-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle hibernate-snowflakeid:hibernate-snowflakeid-boot-starter:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle jpa-auditing:jpa-auditing-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle jpa-auditing:jpa-auditing-boot-autoconfigure:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle exception:exception-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
 
-gradle jpa-auditing:jpa-auditing-boot-starter:publishAllPublicationsToMavenCentral --no-configuration-cache
-gradle closeAndReleaseRepository
+gradle servlet-problem-details:servlet-problem-details-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
 
+gradle servlet-problem-details:servlet-problem-details-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
+
+gradle webflux-problem-details:webflux-problem-details-boot-autoconfigure:publishAndReleaseToMavenCentral --no-configuration-cache
+
+gradle webflux-problem-details:webflux-problem-details-boot-starter:publishAndReleaseToMavenCentral --no-configuration-cache
