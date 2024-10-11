@@ -30,4 +30,34 @@ public class ExceptionBuilder {
         var msg = messageSource.getMessage(code, null, locale);
         return new BusinessException(code, msg);
     }
+
+    public static EntityNotFoundException entityNotFoundException(String entityName, String id) {
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, Locale.getDefault());
+        return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
+    }
+
+    public static EntityNotFoundException entityNotFoundException(String entityName, String id, Locale locale) {
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, locale);
+        return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
+    }
+
+    public static EntityNotFoundException entityNotFoundException(String entityName, Long id) {
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, Locale.getDefault());
+        return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
+    }
+
+    public static EntityNotFoundException entityNotFoundException(String entityName, Long id, Locale locale) {
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, locale);
+        return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
+    }
+
+    public static EntityNotFoundException entityNotFoundException(String entityName, Integer id) {
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, Locale.getDefault());
+        return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
+    }
+
+    public static EntityNotFoundException entityNotFoundException(String entityName, Integer id, Locale locale) {
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, locale);
+        return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
+    }
 }
