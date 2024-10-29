@@ -48,6 +48,12 @@ public class WebfluxProblemDetailsExceptionHandler extends ResponseEntityExcepti
         return super.handleExceptionInternal(ex, problemDetail, null, status, exchange);
     }
 
+    protected ProblemDetail createProblemDetail(Exception ex, HttpStatusCode status, String defaultDetail, String detailMessageCode, Object[] detailMessageArguments, ServerWebExchange exchange) {
+        var problemDetail = super.createProblemDetail(ex, status, defaultDetail, detailMessageCode, detailMessageArguments, exchange);
+        ProblemDetailsBuilder.timestamp(problemDetail);
+        return problemDetail;
+    }
+
     protected Mono<ResponseEntity<Object>> handleExceptionInternal(
             Exception ex,
             Object body,
