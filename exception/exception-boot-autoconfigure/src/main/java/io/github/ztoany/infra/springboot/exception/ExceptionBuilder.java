@@ -32,32 +32,41 @@ public class ExceptionBuilder {
     }
 
     public static EntityNotFoundException entityNotFoundException(String entityName, String id) {
-        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, LocaleUtils.handleHttpAcceptLanguage());
+        var locale = LocaleUtils.handleHttpAcceptLanguage();
+        var entityMsg = messageSource.getMessage(entityName, null, locale);
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityMsg, id}, locale);
         return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
     }
 
     public static EntityNotFoundException entityNotFoundException(String entityName, String id, Locale locale) {
-        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, locale);
+        var entityMsg = messageSource.getMessage(entityName, null, locale);
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityMsg, id}, locale);
         return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
     }
 
     public static EntityNotFoundException entityNotFoundException(String entityName, Long id) {
-        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id == null ? id : id.toString()}, LocaleUtils.handleHttpAcceptLanguage());
+        var locale = LocaleUtils.handleHttpAcceptLanguage();
+        var entityMsg = messageSource.getMessage(entityName, null, locale);
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityMsg, id == null ? id : id.toString()}, locale);
         return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
     }
 
     public static EntityNotFoundException entityNotFoundException(String entityName, Long id, Locale locale) {
-        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id == null ? id : id.toString()}, locale);
+        var entityMsg = messageSource.getMessage(entityName, null, locale);
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityMsg, id == null ? id : id.toString()}, locale);
         return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
     }
 
     public static EntityNotFoundException entityNotFoundException(String entityName, Integer id) {
-        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, LocaleUtils.handleHttpAcceptLanguage());
+        var locale = LocaleUtils.handleHttpAcceptLanguage();
+        var entityMsg = messageSource.getMessage(entityName, null, locale);
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityMsg, id}, locale);
         return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
     }
 
     public static EntityNotFoundException entityNotFoundException(String entityName, Integer id, Locale locale) {
-        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityName, id}, locale);
+        var entityMsg = messageSource.getMessage(entityName, null, locale);
+        var msg = messageSource.getMessage(PredefinedErrorCodes.ENTITY_NOT_FOUND, new Object[]{entityMsg, id}, locale);
         return new EntityNotFoundException(PredefinedErrorCodes.ENTITY_NOT_FOUND, msg);
     }
 }
