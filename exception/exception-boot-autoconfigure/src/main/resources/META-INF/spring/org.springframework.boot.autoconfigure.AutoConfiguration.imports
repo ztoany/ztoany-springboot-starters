@@ -1,1 +1,1 @@
-io.github.ztoany.infra.springboot.exception.PredefinedErrorMessageAutoConfiguration
+io.github.ztoany.infra.springboot.exception.I18nMessageSourceAutoConfiguration
