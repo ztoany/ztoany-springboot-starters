@@ -4,6 +4,7 @@ import io.github.ztoany.infra.springboot.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
+import org.springframework.lang.Nullable;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,6 +43,12 @@ public class ServletProblemDetailsExceptionHandler extends ResponseEntityExcepti
         var problemDetail = ProblemDetail.forStatusAndDetail(status, status.getReasonPhrase());
         ProblemDetailsBuilder.timestamp(problemDetail);
         return super.handleExceptionInternal(ex, problemDetail, null, status, request);
+    }
+
+    protected ProblemDetail createProblemDetail(Exception ex, HttpStatusCode status, String defaultDetail, String detailMessageCode, Object[] detailMessageArguments, WebRequest request) {
+        var problemDetail = super.createProblemDetail(ex, status, defaultDetail, detailMessageCode, detailMessageArguments, request);
+        ProblemDetailsBuilder.timestamp(problemDetail);
+        return problemDetail;
     }
 
     protected ResponseEntity<Object> handleExceptionInternal(
