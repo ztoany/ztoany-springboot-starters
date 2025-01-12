@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.Ordered;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import java.time.Duration;
@@ -36,9 +35,8 @@ public class I18nMessageSourceAutoConfiguration {
     @Bean
     public MessageSource messageSource(MessageSourceProperties properties) {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        if (StringUtils.hasText(properties.getBasename())) {
-            messageSource.setBasenames(StringUtils
-                    .commaDelimitedListToStringArray(StringUtils.trimAllWhitespace(properties.getBasename())));
+        if (!properties.getBasename().isEmpty()) {
+            messageSource.setBasenames(properties.getBasename().toArray(String[]::new));
         }
         if (properties.getEncoding() != null) {
             messageSource.setDefaultEncoding(properties.getEncoding().name());
