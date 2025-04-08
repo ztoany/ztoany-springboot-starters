@@ -30,4 +30,7 @@ include 'webflux-problem-details:webflux-problem-details-boot-autoconfigure'
 findProject(':webflux-problem-details:webflux-problem-details-boot-autoconfigure')?.name = 'webflux-problem-details-boot-autoconfigure'
 include 'webflux-problem-details:webflux-problem-details-boot-starter'
 findProject(':webflux-problem-details:webflux-problem-details-boot-starter')?.name = 'webflux-problem-details-boot-starter'
+include 'validation'
+include 'validation:validation-boot-autoconfigure'
+findProject(':validation:validation-boot-autoconfigure')?.name = 'validation-boot-autoconfigure'
 
